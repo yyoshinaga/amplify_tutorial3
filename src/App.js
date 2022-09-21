@@ -5,33 +5,20 @@ import {
   Routes,
   Route
 } from "react-router-dom"
+import { Container } from '@mui/material'
 
 import Notes from './components/Notes'
+import Home from './components/Home'
 
 function App() {
-  const [notes, setNotes] = useState([])
-
-  useEffect(() => {
-    console.log("Welcome App")
-    
-    fetch('https://lizhwuftec.execute-api.us-east-1.amazonaws.com/TestStage')
-    .then(response => response.json())
-    .then(data => setNotes(data.Items))
-    .catch((error) => {
-      console.error(error, "some error")
-    })
-  }, [])
-
 
   return (
-    <div className="App">
-      {notes[0] && 
-      <p>These are my notes: {notes[0].name}</p>
-      }
-        {/* <Routes>
+    <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/notes/:id" element={<Notes />} />
-        </Routes> */}
-    </div>
+        </Routes>
+    </Container>
   )
 }
 
